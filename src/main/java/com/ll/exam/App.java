@@ -4,9 +4,11 @@ import java.util.Scanner;
 
 public class App {
     private Scanner sc;
+    private int wiseSayingsLastId;
 
     public App() {
         sc = new Scanner(System.in);
+        wiseSayingsLastId = 0;
     }
 
     public void run() {
@@ -30,7 +32,7 @@ public class App {
     }
 
     private void write() {
-        int id = 1;
+        int id = ++wiseSayingsLastId;
         System.out.printf("명언 : ");
         String content = sc.nextLine();
         System.out.printf("작가 : ");
