@@ -3,9 +3,13 @@ package com.ll.exam;
 import java.util.Scanner;
 
 public class App {
-    public void run() {
-        Scanner sc = new Scanner(System.in);
+    private Scanner sc;
 
+    public App() {
+        sc = new Scanner(System.in);
+    }
+
+    public void run() {
         System.out.println("== 명언 SSG ==");
 
         outer:
@@ -14,11 +18,21 @@ public class App {
             String cmd = sc.nextLine();
 
             switch (cmd) {
+                case "등록":
+                    write();
+                    break;
                 case "종료":
                     break outer;
             }
         }
 
         sc.close();
+    }
+
+    private void write() {
+        System.out.printf("명언 : ");
+        String content = sc.nextLine();
+        System.out.printf("작가 : ");
+        String author = sc.nextLine();
     }
 }
