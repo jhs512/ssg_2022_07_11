@@ -22,14 +22,22 @@ public class App {
         outer:
         while (true) {
             System.out.printf("명령) ");
-            String cmd = sc.nextLine();
 
-            switch (cmd) {
+            String cmd = sc.nextLine();
+            String[] cmdBits = cmd.split("\\?", 2);
+
+            String path = cmdBits[0];
+            String queryStr = cmdBits.length == 2 ? cmdBits[1] : null;
+
+            switch (path) {
                 case "등록":
                     write();
                     break;
                 case "목록":
                     list();
+                    break;
+                case "삭제":
+                    remove(path, queryStr);
                     break;
                 case "종료":
                     break outer;
@@ -37,6 +45,10 @@ public class App {
         }
 
         sc.close();
+    }
+
+    private void remove(String path, String queryStr) {
+        System.out.println("명언을 삭제합니다.");
     }
 
     private void list() {
