@@ -24,12 +24,10 @@ public class App {
             System.out.printf("명령) ");
 
             String cmd = sc.nextLine();
-            String[] cmdBits = cmd.split("\\?", 2);
 
-            String path = cmdBits[0];
-            String queryStr = cmdBits.length == 2 ? cmdBits[1] : null;
+            Rq rq = new Rq(cmd);
 
-            switch (path) {
+            switch (rq.getPath()) {
                 case "등록":
                     write();
                     break;
@@ -37,7 +35,7 @@ public class App {
                     list();
                     break;
                 case "삭제":
-                    remove(path, queryStr);
+                    remove(rq);
                     break;
                 case "종료":
                     break outer;
@@ -47,8 +45,17 @@ public class App {
         sc.close();
     }
 
-    private void remove(String path, String queryStr) {
+    private void remove(Rq rq) {
         System.out.println("명언을 삭제합니다.");
+
+        int id = rq.getIntParam("id", 0);
+
+        if (id == 0) {
+            System.out.println("id를 입력해주세요.");
+            return;
+        }
+
+        System.out.printf("%d번 명언을 삭제합니다.\n", id);
     }
 
     private void list() {
